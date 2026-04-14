@@ -1,0 +1,230 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertical center */
+    align-items: center;    /* Horizontal center */
+    height: 100vh;          /* Full page height */
+    text-align: center;     /* Center align text */
+    background: url("/static/images/image.png") no-repeat center center/cover;
+    color: white; /* So text is visible on dark images */
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
+    z-index: 1;
+}
+
+.hero h1,
+.hero p,
+.hero-buttons {
+    position: relative;
+    z-index: 2; /* Keep text and buttons above the overlay */
+}
+
+/* base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(to right, #323233, #c4dce3, #edecf2);
+    color: #222;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: rgba(0, 0, 0, 0.8);
+    color: rgb(239, 242, 243);
+}
+
+.navbar a {
+    color: rgb(238, 246, 249);
+    text-decoration: none;
+    margin-left: 14px;
+    font-weight: 600;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.logo span {
+    color: #eaf4f7;
+}
+
+/* Flash messages */
+.flash-messages {
+    max-width: 1100px;
+    margin: 16px auto;
+    padding: 0 18px;
+}
+
+.flash {
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.flash-success {
+    background: #141113;
+    color: #e2eef1;
+}
+
+.flash-danger {
+    background: #101112;
+    color: #0a0a0b;
+}
+
+.flash-info {
+    background: #f1ecf3;
+    color: #070b7b;
+}
+
+/* layout */
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 12px;
+}
+
+.dashboard-hero {
+    padding: 18px;
+    border-radius: 12px;
+    background: rgba(47, 22, 211, 0.08);
+    color: #1f041f;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    background: rgba(84, 179, 224, 0.18);
+    height: 14px;
+    border-radius: 8px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #17161d, #b7bdc1, #8e77c5);
+    width: 0%;
+}
+
+/* buttons */
+.btn {
+    background: #f1f6f5;
+    color: #111;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid rgba(2, 7, 21, 0.4);
+    color: #24033c;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.btn.small {
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+/* forms */
+.form-container {
+    max-width: 560px;
+    margin: 40px auto;
+    background: rgb(161, 158, 161);
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+}
+
+/* card grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.card {
+    background: rgb(244, 246, 248);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card h4 {
+    margin: 10px 0 6px;
+}
+
+/* muted */
+.muted {
+    color: #0f66e8;
+    font-size: 14px;
+}
+
+/* rewards style */
+.reward-badge {
+    display: inline-block;
+    background: #94d0f6;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    color: #f7dd5f;
+}
+
+.reward-popup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff8e1;
+    padding: 20px 40px;
+    border: 2px solid #ffc107;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-size: 1.5rem;
+    z-index: 1000;
+    animation: pop 1s ease forwards;
+}
+
+@keyframes pop {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}

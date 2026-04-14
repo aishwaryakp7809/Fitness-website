@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+
+    <section class="dashboard-hero">
+        <h2>Welcome, {{ user.name }}</h2>
+        <p>Progress: <strong>{{ user.progress }}%</strong> • Points: <strong>{{ user.points }}</strong></p>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ user.progress }}%"></div>
+        </div>
+        <div style="margin-top:12px;">
+            <a href="{{ url_for('assess') }}" class="btn">Create / Re-generate Routine</a>
+            <a href="{{ url_for('logout') }}" class="btn-outline">Logout</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h3>Assigned Routines</h3>
+        <div class="card-grid">
+            {% for r in routines %}
+            <div class="card">
+                <h4 style="text-align:left;">{{ r['title'] }}</h4>
+                <p class="muted" style="text-align:left;">Scheduled: {{ r['scheduled_date'] }} at {{ r['scheduled_time']
+                    }}</p>
+                <p style="text-align:left;"><a href="{{ r['videoUrl'] }}" target="_blank">Watch Video</a></p>
+                <p style="text-align:left;">Status: <strong>{{ r['status'] }}</strong></p>
+                {% if r['status'] == 'pending' %}
+                <a href="{{ url_for('complete_routine', rid=r['id']) }}" class="btn small">Mark Complete</a>
+                {% else %}
+                <div class="muted">Completed • +{{ r['points_awarded'] }} points</div>
+                {% endif %}
+            </div>
+            {% else %}
+            <p>No routines assigned. Create one from <a href="{{ url_for('assess') }}">Health Assessment</a>.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section">
+    <h3>Workouts</h3>
+    <div class="card-grid">
+        
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001a1" alt="Yoga Flow">
+            <h4>Yoga Flow</h4>
+            <p class="muted">30 mins • All Levels</p>
+            <p>Relaxing 30-minute yoga session.</p>
+            <a href="#" class="btn small">Complete Workout</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" alt="">
+            <h4>HIIT Fat Burner</h4>
+            <p class="muted">20 mins • Intermediate</p>
+            <p>20-minute high intensity interval training.</p>
+            <a href="#" class="btn small">Complete Workout</a>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" alt="Full Body Beginner">
+            <h4>Full Body Beginner</h4>
+            <p class="muted">25 mins • Beginner</p>
+            <p>A 25-minute full body routine for beginners.</p>
+            <a href="#" class="btn small">Complete Workout</a>
+        </div>
+
+    </div>
+</section>
+
+
+<section class="section">
+    <h3>Nutrition Plan - {{ user.food_preference|title }}</h3>
+    <div class="card-grid">
+        {% if nutrition %}
+            {% for n in nutrition %}
+            <div class="card">
+                <img src="{{ n.imageUrl }}" alt="{{ n.title }}">
+                <h4>{{ n.title }}</h4>
+                <p class="muted">{{ n.calories }} kcal</p>
+                <p>{{ n.description }}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No {{ user.food_preference }} nutritional items available.</p>
+        {% endif %}
+    </div>
+</section>
+
+
+
+    <section class="section">
+        <h3>Your Rewards</h3>
+        <div class="card-grid">
+            {% if rewards %}
+            {% for rew in rewards %}
+            <div class="card">
+                <h4>{{ rew['name'] }}</h4>
+                <p class="muted">{{ rew['awarded_at'][:10] }}</p>
+                <p>{{ rew['description'] }}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No rewards yet — complete routines to earn points and badges!</p>
+            {% endif %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}

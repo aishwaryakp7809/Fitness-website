@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+    <h1>Level up your fitness journey</h1>
+    <p>Personalized workouts, nutrition plans and progress tracking — all in one place.</p>
+    <div class="hero-buttons">
+        <a href="{{ url_for('signup') }}" class="btn"  >Get Started</a>
+        <a href="{{ url_for('login') }}" class="btn-outline">Login</a>
+    </div>
+</section>
+{% endblock %}

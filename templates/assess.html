@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Health Assessment{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Health Assessment — Build your personalized weekly routine</h2>
+    <form method="post">
+        <label>Age</label>
+        <input type="number" name="age" min="10" required>
+
+        <label>Weight (kg)</label>
+        <input type="number" name="weight" min="20" required>
+
+        <label>Height (in cm)</label>
+        <input type="number" name="height" min="100" max="250" required>
+
+        <label>Strength level</label>
+        <select name="strength" required>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+
+        <label>Main goal (e.g., lose weight, build strength, mobility)</label>
+        <input type="text" name="goal" placeholder="Lose weight / Strength / Mobility" required>
+
+        <label>Preferred time for workouts (HH:MM)</label>
+        <input type="time" name="time">
+
+        <button type="submit">Create My Weekly Routine</button>
+    </form>
+
+    {% if bmi %}
+        <p><strong>Your BMI:</strong> {{ bmi }} — {{ bmi_status }}</p>
+    {% endif %}
+
+    <p class="muted">After creating, check your Dashboard → Assigned Routines.</p>
+</div>
+{% endblock %}

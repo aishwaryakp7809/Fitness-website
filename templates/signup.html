@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Create Account</h2>
+    <form method="post">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+
+        <!-- 🆕 Date of Birth Field -->
+        <label for="dob">Date of Birth:</label>
+        <input type="date" name="dob" id="dob" required>
+
+        <!-- 🆕 Diet Preference -->
+        <label for="diet">Diet Preference:</label>
+        <select name="diet" id="diet" required>
+            <option value="Veg">Vegetarian</option>
+            <option value="Non-Veg">Non-Vegetarian</option>
+        </select>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
+{% endblock %}
