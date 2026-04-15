@@ -15,7 +15,9 @@ FitLife is a simple fitness website that provides workout routines, diet suggest
 ## Tech Stack
 - HTML
 - CSS
-- JavaScript 
+- JavaScript
+- Python
+- SQL
 
 ## How to Run
 1. Download the project
